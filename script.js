@@ -18,7 +18,15 @@ function getPlayerSelection() {
   let playerSelection = prompt(
     "Welcome to RPS. Type 'rock', 'paper', or 'scissors' to play."
   );
-  return playerSelection;
+  playerSelection = playerSelection.toLowerCase();
+  if (
+    playerSelection !== "rock" &&
+    playerSelection !== "paper" &&
+    playerSelection !== "scissors"
+  ) {
+    alert('Invalid input. Please type "rock" , "paper", or "scissors".');
+    getPlayerSelection();
+  } else return playerSelection;
 }
 
 //CPU RPS is stored in variable
@@ -66,7 +74,6 @@ function score(gameResult) {
   else (userScore += 0.5), (cpuScore += 0.5);
   let gameScore = `The score is: User ${userScore} - ${cpuScore} CPU`;
   console.log(gameScore);
-  return userScore, cpuScore;
 }
 //function that controls stack
 //control();
@@ -81,3 +88,4 @@ function game() {
     score(gameResult);
   }
 }
+game();
