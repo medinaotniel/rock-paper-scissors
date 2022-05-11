@@ -15,11 +15,16 @@ function userGetValue() {
   userValue = prompt(
     "Welcome to RPS. Type 'rock', 'paper', or 'scissors' to play."
   );
+  convert(userValue);
   cpuGetValue();
-  convert();
 }
 
 //converts user RPS to numerical value
+function convert(value) {
+  if (value === "rock") userValue = 0;
+  else if (value === "paper") userValue = 1;
+  else userValue = 2;
+}
 //CPU RPS is stored in variable
 function cpuGetValue() {
   cpuValue = Math.floor(Math.random() * 3);
