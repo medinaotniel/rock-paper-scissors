@@ -18,15 +18,18 @@ function getPlayerSelection() {
   let playerSelection = prompt(
     "Welcome to RPS. Type 'rock', 'paper', or 'scissors' to play."
   );
-  playerSelection = playerSelection.toLowerCase();
   if (
-    playerSelection !== "rock" &&
-    playerSelection !== "paper" &&
-    playerSelection !== "scissors"
+    playerSelection == null ||
+    (playerSelection.toLowerCase() !== "rock" &&
+      playerSelection.toLowerCase() !== "paper" &&
+      playerSelection.toLowerCase() !== "scissors")
   ) {
     alert('Invalid input. Please type "rock" , "paper", or "scissors".');
     getPlayerSelection();
-  } else return playerSelection;
+  } else {
+    playerSelection = playerSelection.toLowerCase();
+    return playerSelection;
+  }
 }
 
 //CPU RPS is stored in variable
@@ -40,21 +43,23 @@ function computerPlay() {
 function playRound(userValue, cpuValue) {
   userValue = userValue.toLowerCase();
   cpuValue = cpuValue.toLowerCase();
+
   switch (true) {
     case userValue === cpuValue:
-      return (gameResult = null);
+      return null;
       break;
     case userValue === "rock" && cpuValue === "scissors":
-      return (gameResult = true);
+      return true;
       break;
     case userValue === "paper" && cpuValue === "rock":
-      gameResult = true;
+      return true;
       break;
     case userValue === "scissors" && cpuValue === "paper":
-      gameResult = true;
+      return true;
       break;
+
     default:
-      gameResult = false;
+      return false;
       break;
   }
 }
@@ -62,8 +67,8 @@ function playRound(userValue, cpuValue) {
 //A function will receive the result and displays the appropriate result message
 //The game is now over
 function displayResult(result, player, cpu) {
-  if (gameResult == true) console.log("You Win! " + `${player} beats ${cpu}.`);
-  else if (gameResult == false)
+  if (result == true) console.log("You Win! " + `${player} beats ${cpu}.`);
+  else if (result == false)
     console.log("You Lose! HAHAHA. " + `${cpu} beats ${player}.`);
   else console.log("Its a tie... boring");
 }
@@ -87,5 +92,8 @@ function game() {
     displayResult(gameResult, playerSelection, computerSelection);
     score(gameResult);
   }
+  if (userScore === cpuScore) console.log("Tie. No one wins the game");
+  else if (userScore > cpuScore) console.log("You win the game");
+  else console.log("CPU wins the game");
 }
 game();
