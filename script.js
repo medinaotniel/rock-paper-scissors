@@ -1,12 +1,6 @@
 // 0 == rock
 // 1 == paper
 // 2 == scissors
-
-//necessary global values to keep track of 5 round score
-let userScore = 0;
-let cpuScore = 0;
-let playerSelection = "";
-
 //Algorithm
 //
 // User is prompted with welcome message and asked to play RPS
@@ -19,6 +13,16 @@ let playerSelection = "";
 //The result is then stored and sent to another function that displays the result
 //A function will receive the result and displays the appropriate result message
 //The game is now over
+
+//necessary global values to keep track of 5 round score
+let userScore = 0;
+let cpuScore = 0;
+let playerSelection = "";
+
+game(); //starts the game
+
+//This is the main function that calls other functions
+/// and the call stack
 
 function game() {
   for (let i = 0; i < 5; i++) {
@@ -34,8 +38,8 @@ function game() {
   else if (userScore > cpuScore) console.log("You win the game");
   else console.log("CPU wins the game");
 }
-game();
 
+//Gets the users RPS input value
 function getPlayerSelection() {
   let input = prompt(
     "Welcome to RPS. Type 'rock', 'paper', or 'scissors' to play."
@@ -55,8 +59,7 @@ function getPlayerSelection() {
   }
 }
 
-//function check(value) {}
-
+//Gets the CPU RPS value
 function computerPlay() {
   cpuValue = Math.floor(Math.random() * 3);
   if (cpuValue == 0) return "Rock";
@@ -64,6 +67,7 @@ function computerPlay() {
   else return "Scissors";
 }
 
+//Checks who won the round
 function playRound(userValue, cpuValue) {
   userValue = userValue.toLowerCase();
   cpuValue = cpuValue.toLowerCase();
@@ -95,6 +99,7 @@ function displayResult(result, player, cpu) {
   else console.log("Its a tie... boring");
 }
 
+//Keeps track of score; best of 5
 function score(gameResult) {
   if (gameResult == true) userScore += 1;
   else if (gameResult == false) cpuScore += 1;
