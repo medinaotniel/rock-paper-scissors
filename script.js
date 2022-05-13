@@ -19,11 +19,18 @@ let userScore = 0;
 let cpuScore = 0;
 let playerSelection = "";
 
-game(); //starts the game
+//starts the game
+startGame();
+function startGame() {
+  if (window.confirm("Do you want to play rock paper scissors?")) {
+    game();
+  } else {
+    return;
+  }
+}
 
 //This is the main function that calls other functions
 /// and the call stack
-
 function game() {
   for (let i = 0; i < 5; i++) {
     getPlayerSelection();
